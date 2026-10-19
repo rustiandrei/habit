@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Privacy Policy — Habit Tracker: Planner Routine</title>
+
+  <!-- Prevent Theme Flash (FOUC) -->
+  <script>
+    (function() {
+      try {
+        var savedTheme = localStorage.getItem('ht_theme');
+        var prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+        var theme = savedTheme || (prefersDark ? 'dark' : 'light');
+        document.documentElement.setAttribute('data-theme', theme);
+        var savedColor = localStorage.getItem('ht_color') || 'indigo';
+        document.documentElement.setAttribute('data-theme-color', savedColor);
+      } catch (e) {}
+    })();
+  </script>
+
+  <meta name="description" content="Privacy Policy for Habit Tracker: Planner Routine. 100% on-device data storage, zero analytics, zero third-party tracking.">
+
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/icons/favicon-32.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/icons/apple-touch-icon.png">
+  <link rel="stylesheet" href="styles.css">
+
+  <style>
+    .legal-content {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 60px 0;
+    }
+    .legal-card {
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-xl);
+      padding: 48px;
+      box-shadow: var(--shadow-md);
+      line-height: 1.7;
+    }
+    .legal-card h1 {
+      font-size: 2.25rem;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      margin-bottom: 8px;
+    }
+    .legal-meta {
+      font-size: 0.875rem;
+      color: var(--text-muted);
+      margin-bottom: 36px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid var(--border-light);
+    }
+    .legal-card h2 {
+      font-size: 1.375rem;
+      font-weight: 700;
+      margin-top: 32px;
+      margin-bottom: 12px;
+      color: var(--text-primary);
+    }
+    .legal-card p, .legal-card ul {
+      color: var(--text-secondary);
+      margin-bottom: 16px;
+      font-size: 1rem;
+    }
+    .legal-card ul {
+      padding-left: 24px;
+    }
+    .legal-card li {
+      margin-bottom: 8px;
+    }
+    .badge-highlight {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 12px;
+      border-radius: var(--radius-full);
+      background-color: rgba(16, 185, 129, 0.1);
+      color: #10b981;
+      font-size: 0.875rem;
+      font-weight: 600;
+      margin-bottom: 24px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Ambient Glow -->
+  <div class="ambient-glow" aria-hidden="true">
+    <div class="ambient-blob ambient-blob-1"></div>
+  </div>
+
+  <!-- Header -->
+  <header class="site-header">
+    <div class="container">
+      <nav class="nav-wrap">
+        <a href="index.html" class="brand-link">
+          <img src="assets/icons/app-icon.png" alt="Habit Tracker Icon" class="brand-icon" width="42" height="42">
+          <div class="brand-text">
+            <span class="brand-name">Habit Tracker</span>
+            <span class="brand-descriptor">Planner Routine</span>
+          </div>
+        </a>
+
+        <div class="nav-actions">
+          <a href="index.html" class="btn btn-secondary btn-sm">← Back to Home</a>
+          <button id="themeToggle" class="icon-btn" aria-label="Toggle Theme">
+            <svg class="moon-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+            </svg>
+            <svg class="sun-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:none;">
+              <circle cx="12" cy="12" r="5"></circle>
+              <line x1="12" y1="1" x2="12" y2="3"></line>
+              <line x1="12" y1="21" x2="12" y2="23"></line>
+              <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+              <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+              <line x1="1" y1="12" x2="3" y2="12"></line>
+              <line x1="21" y1="12" x2="23" y2="12"></line>
+              <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+              <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+            </svg>
+          </button>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container legal-content">
+    <article class="legal-card">
+      <div class="badge-highlight">
+        <span>🔒 100% On-Device & Zero Third-Party Tracking</span>
+      </div>
+      <h1>Privacy Policy</h1>
+      <div class="legal-meta">
+        Last updated: October 2026 · Habit Tracker: Planner Routine
+      </div>
+
+      <p>
+        At <strong>Habit Tracker: Planner Routine</strong>, we believe that your personal habits, daily routines, emotional reflections, and wellness notes are deeply private and belong strictly to you.
+      </p>
+
+      <h2>1. On-Device Local Storage (SwiftData)</h2>
+      <p>
+        All habit schedules, completion logs, notes, time trackers, and mood entries are stored strictly on your device using Apple’s native SwiftData database.
+        We do not operate backend servers that store or process your personal habit data.
+      </p>
+
+      <h2>2. No Accounts & No Personal Identifiers</h2>
+      <p>
+        You do not need to register with an email address, password, phone number, or social media profile to use Habit Tracker.
+        The app is completely functional from the moment you install it without transmitting personal identity details.
+      </p>
+
+      <h2>3. Apple Health (HealthKit) Integration</h2>
+      <p>
+        If you grant permission, Habit Tracker reads and writes data (such as mindful minutes, hydration volume, steps, workouts, sleep, and HRV) directly through Apple's HealthKit framework.
+      </p>
+      <ul>
+        <li>Your health data is never collected, copied, or sent to external servers or third parties.</li>
+        <li>HealthKit data is never used for advertising, marketing, or data mining.</li>
+        <li>You can modify or revoke HealthKit permissions anytime in iOS Settings > Health > Habit Tracker.</li>
+      </ul>
+
+      <h2>4. Biometric App Lock (Face ID / Touch ID)</h2>
+      <p>
+        When you enable the App Lock feature, biometric verification is executed entirely on your device via Apple’s LocalAuthentication framework and Secure Enclave.
+        Habit Tracker does not collect, receive, or store your biometric data.
+      </p>
+
+      <h2>5. Analytics & Advertisements</h2>
+      <p>
+        Habit Tracker contains <strong>zero third-party advertising SDKs</strong> and <strong>zero behavioral tracking scripts</strong>.
+        We do not sell, rent, or trade your personal information.
+      </p>
+
+      <h2>6. Data Backup & User Control</h2>
+      <p>
+        Your habits automatically back up to your personal Apple iCloud account through standard iOS device backups.
+        You can also export your habit history manually at any time or delete your data directly from within the app.
+      </p>
+
+      <h2>7. External Links & Document Access</h2>
+      <p>
+        You can view our canonical Google Docs privacy policy document anytime at:
+        <a href="https://docs.google.com/document/d/1xp1rIodLPg0PVwZkXaF_fSH-279oGDIvVhEHVUhEL9w/edit?usp=sharing" target="_blank" rel="noopener noreferrer" style="color:var(--accent-primary); word-break: break-all;">
+          https://docs.google.com/document/d/1xp1rIodLPg0PVwZkXaF_fSH-279oGDIvVhEHVUhEL9w/edit?usp=sharing
+        </a>
+      </p>
+
+      <h2>8. Contact Us</h2>
+      <p>
+        If you have any questions or feedback regarding our privacy practices, please contact us via the App Store support channel.
+      </p>
+    </article>
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container" style="text-align:center;">
+      <p>© 2026 Habit Tracker: Planner Routine. Crafted with privacy by Andrei Rusti.</p>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,1116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Habit Tracker: Planner Routine — Build Lasting Habits Without Burnout</title>
+
+  <!-- Prevent Theme Flash (FOUC) -->
+  <script>
+    (function() {
+      try {
+        var savedTheme = localStorage.getItem('ht_theme');
+        var prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+        var theme = savedTheme || (prefersDark ? 'dark' : 'light');
+        document.documentElement.setAttribute('data-theme', theme);
+        var savedColor = localStorage.getItem('ht_color') || 'indigo';
+        document.documentElement.setAttribute('data-theme-color', savedColor);
+      } catch (e) {}
+    })();
+  </script>
+
+  <!-- SEO & Open Graph Meta Tags -->
+  <meta name="description" content="A calm, private habit tracker and planner designed for iPhone and iPad. Track routines in one tap, protect streaks with humane shields, uncover on-device insights, and keep focus alive with Live Activities.">
+  <meta name="keywords" content="habit tracker, routine planner, daily habits, iOS habit tracker, streak shields, apple health sync, focus timer, pomodoro, privacy first habit app">
+  <meta name="author" content="Andrei Rusti">
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Habit Tracker: Planner Routine — Built for iPhone & iPad">
+  <meta property="og:description" content="Build habits that actually stick. Tap-to-log, humane streak shields, private on-device pattern intelligence, and iOS widgets. Zero ads, zero accounts.">
+  <meta property="og:image" content="assets/frames/01-today.png">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Habit Tracker: Planner Routine">
+  <meta name="twitter:description" content="A calm, private habit planner designed for iPhone and iPad. Track routines, protect focus, and build momentum.">
+  <meta name="twitter:image" content="assets/frames/01-today.png">
+
+  <!-- Favicons & App Icons -->
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/icons/favicon-32.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/icons/apple-touch-icon.png">
+  <meta name="theme-color" content="#090b10">
+
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- Background Ambient Glow -->
+  <div class="ambient-glow" aria-hidden="true">
+    <div class="ambient-blob ambient-blob-1"></div>
+    <div class="ambient-blob ambient-blob-2"></div>
+    <div class="ambient-blob ambient-blob-3"></div>
+  </div>
+
+  <!-- ==========================================================================
+       Site Navigation Header
+       ========================================================================== -->
+  <header class="site-header">
+    <div class="container">
+      <nav class="nav-wrap" aria-label="Main Navigation">
+        <!-- Brand Link -->
+        <a href="#" class="brand-link">
+          <img src="assets/icons/app-icon.png" alt="Habit Tracker App Icon" class="brand-icon" width="42" height="42">
+          <div class="brand-text">
+            <span class="brand-name">Habit Tracker</span>
+            <span class="brand-descriptor">Planner Routine</span>
+          </div>
+        </a>
+
+        <!-- Navigation Links -->
+        <ul class="nav-links">
+          <li><a href="#showcase">Showcase</a></li>
+          <li><a href="#playground">Interactive Demo</a></li>
+          <li><a href="#philosophy">Streak Shields</a></li>
+          <li><a href="#features">Features</a></li>
+          <li><a href="#gallery">Screenshots</a></li>
+          <li><a href="#faq">FAQ</a></li>
+        </ul>
+
+        <!-- Controls & Actions -->
+        <div class="nav-actions">
+          <!-- Accent Theme Switcher -->
+          <div class="theme-picker" title="Switch Theme Color" aria-label="Select accent theme">
+            <button class="color-dot active" data-color="indigo" title="Classic Indigo"></button>
+            <button class="color-dot" data-color="solar" title="Solar Coral"></button>
+            <button class="color-dot" data-color="ocean" title="Ocean Teal"></button>
+            <button class="color-dot" data-color="mint" title="Mint Green"></button>
+            <button class="color-dot" data-color="plum" title="Plum Violet"></button>
+            <button class="color-dot" data-color="slate" title="Minimal Slate"></button>
+          </div>
+
+          <!-- Light/Dark Mode Toggle -->
+          <button id="themeToggle" class="icon-btn" aria-label="Toggle Dark and Light Mode" title="Toggle theme mode">
+            <!-- Moon SVG (for light mode) -->
+            <svg class="moon-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+            </svg>
+            <!-- Sun SVG (for dark mode) -->
+            <svg class="sun-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none;">
+              <circle cx="12" cy="12" r="5"></circle>
+              <line x1="12" y1="1" x2="12" y2="3"></line>
+              <line x1="12" y1="21" x2="12" y2="23"></line>
+              <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+              <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+              <line x1="1" y1="12" x2="3" y2="12"></line>
+              <line x1="21" y1="12" x2="23" y2="12"></line>
+              <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+              <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+            </svg>
+          </button>
+
+          <!-- Download CTA -->
+          <a href="https://apps.apple.com/app/habit-tracker-planner-routine/id6504261778" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M15.97 6.37c.62-.75 1.04-1.8 0.92-2.85-.9.04-1.99.6-2.64 1.35-.58.66-1.08 1.73-.95 2.76 1 .08 2.05-.51 2.67-1.26z"/>
+            </svg>
+            <span>Get App</span>
+          </a>
+
+          <!-- Mobile Hamburger Menu Button -->
+          <button id="mobileMenuBtn" class="mobile-menu-btn" aria-label="Toggle navigation menu" aria-expanded="false">
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Mobile Navigation Drawer -->
+  <div id="mobileDrawer" class="mobile-nav-drawer" aria-label="Mobile Navigation">
+    <ul class="mobile-nav-links">
+      <li><a href="#showcase">Showcase</a></li>
+      <li><a href="#playground">Interactive Demo</a></li>
+      <li><a href="#philosophy">Streak Shields</a></li>
+      <li><a href="#features">Features</a></li>
+      <li><a href="#gallery">Screenshots</a></li>
+      <li><a href="#faq">FAQ</a></li>
+      <li><a href="privacy.html">Privacy Policy</a></li>
+      <li><a href="terms.html">Terms of Service</a></li>
+    </ul>
+    <div class="mobile-drawer-bottom">
+      <a href="https://apps.apple.com/app/habit-tracker-planner-routine/id6504261778" target="_blank" rel="noopener noreferrer" class="btn btn-primary" style="width:100%;">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M15.97 6.37c.62-.75 1.04-1.8 0.92-2.85-.9.04-1.99.6-2.64 1.35-.58.66-1.08 1.73-.95 2.76 1 .08 2.05-.51 2.67-1.26z"/>
+        </svg>
+        <span>Download on App Store</span>
+      </a>
+    </div>
+  </div>
+
+  <main>
+    <!-- ==========================================================================
+         Hero Section
+         ========================================================================== -->
+    <section class="section hero-section">
+      <div class="container">
+        <!-- New Release Pill -->
+        <div class="hero-pill">
+          <span class="hero-pill-badge">Version 2.0</span>
+          <span>Custom Quick Add · 200+ Icons · Apple Health Undo</span>
+        </div>
+
+        <!-- Headline -->
+        <h1 class="hero-title">
+          Build habits that actually stick.<br>
+          <span class="gradient-text">Without guilt, burnout, or ads.</span>
+        </h1>
+
+        <!-- Subhead -->
+        <p class="hero-subhead">
+          A calm, distraction-free habit tracker and daily planner crafted for iPhone and iPad.
+          Track routines in a single tap, protect hard-earned streaks with humane Streak Shields, uncover private on-device patterns, and stay deeply focused.
+        </p>
+
+        <!-- Call to Actions -->
+        <div class="hero-actions">
+          <a href="https://apps.apple.com/app/habit-tracker-planner-routine/id6504261778" target="_blank" rel="noopener noreferrer" class="btn btn-apple btn-lg">
+            <svg viewBox="0 0 24 24">
+              <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M15.97 6.37c.62-.75 1.04-1.8 0.92-2.85-.9.04-1.99.6-2.64 1.35-.58.66-1.08 1.73-.95 2.76 1 .08 2.05-.51 2.67-1.26z"/>
+            </svg>
+            <span>Download on App Store</span>
+          </a>
+
+          <button class="btn btn-secondary btn-lg qr-modal-trigger" title="Open QR Code to scan with iPhone camera">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="3" y="3" width="7" height="7"></rect>
+              <rect x="14" y="3" width="7" height="7"></rect>
+              <rect x="14" y="14" width="7" height="7"></rect>
+              <rect x="3" y="14" width="7" height="7"></rect>
+            </svg>
+            <span>Scan to Install</span>
+          </button>
+        </div>
+
+        <!-- Social Proof Metrics -->
+        <div class="hero-proof">
+          <div class="proof-item">
+            <span class="stars">★★★★★</span>
+            <strong>4.9 Rating</strong>
+          </div>
+          <span>•</span>
+          <div class="proof-item">
+            <span>🔒 100% Private (SwiftData)</span>
+          </div>
+          <span>•</span>
+          <div class="proof-item">
+            <span>🛡️ Streak Shields & Vacation Mode</span>
+          </div>
+          <span>•</span>
+          <div class="proof-item">
+            <span>⚡️ Zero Cloud Accounts Required</span>
+          </div>
+        </div>
+
+        <!-- Hero Device Mockup with Floating Context Cards -->
+        <div class="hero-showcase">
+          <div class="hero-device-wrapper">
+
+            <!-- Floating Card: Focus Live Activity -->
+            <div class="floating-card floating-card-left">
+              <div class="card-icon-bubble">⏱️</div>
+              <div class="card-content">
+                <span class="card-title">Live Activity</span>
+                <span class="card-subtext">25:00 Focus session running on Lock Screen</span>
+              </div>
+            </div>
+
+            <!-- Floating Card: Streak Shield Saved -->
+            <div class="floating-card floating-card-right">
+              <div class="card-icon-bubble">🛡️</div>
+              <div class="card-content">
+                <span class="card-title">Streak Shield Active</span>
+                <span class="card-subtext">Missed day frozen. 42-day streak saved!</span>
+              </div>
+            </div>
+
+            <!-- Floating Card: Keystone Insight -->
+            <div class="floating-card floating-card-bottom">
+              <div class="card-icon-bubble">✨</div>
+              <div class="card-content">
+                <span class="card-title">Keystone Pattern</span>
+                <span class="card-subtext">Morning reading boosts completion +35%</span>
+              </div>
+            </div>
+
+            <!-- Photorealistic iPhone Titanium Mockup -->
+            <div class="iphone-frame">
+              <div class="iphone-dynamic-island">
+                <div class="island-camera"></div>
+                <div class="island-sensor"></div>
+              </div>
+              <div class="iphone-screen">
+                <img src="assets/screenshots/thumb/01-today.png" alt="Habit Tracker iPhone App Today Dashboard" width="320" height="695" loading="eager">
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         Interactive App Showcase (Tabbed Experience Explorer)
+         ========================================================================== -->
+    <section id="showcase" class="section">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">Interactive Showcase</span>
+          <h2 class="section-title">Designed for focus, crafted with care</h2>
+          <p class="section-desc">
+            Explore how Habit Tracker helps you cultivate mindful consistency, deep focus, and self-understanding through an interface that feels like a natural part of iOS.
+          </p>
+        </div>
+
+        <!-- Showcase Navigation Tabs -->
+        <div class="showcase-tabs" role="tablist">
+          <button class="tab-btn active" data-tab="today" role="tab">☀️ Today</button>
+          <button class="tab-btn" data-tab="insights" role="tab">✨ Insights</button>
+          <button class="tab-btn" data-tab="widgets" role="tab">📲 Widgets</button>
+          <button class="tab-btn" data-tab="stats" role="tab">📊 Stats & Heatmaps</button>
+          <button class="tab-btn" data-tab="focus" role="tab">⏱️ Focus Timer</button>
+          <button class="tab-btn" data-tab="wellness" role="tab">🌱 Mood & Health</button>
+        </div>
+
+        <!-- Showcase Dynamic Display Grid -->
+        <div class="showcase-grid">
+          <!-- Text Narrative Column -->
+          <div class="showcase-info">
+            <span id="showcaseTag" class="showcase-tag">Daily Rhythm</span>
+            <h3 id="showcaseTitle" class="showcase-heading">Make today count with calm simplicity</h3>
+            <p id="showcaseDesc" class="showcase-text">
+              A distraction-free dashboard showing today's active habits, sorted by time of day. Check off routines, tap to add custom amounts, or see your day's overall progress ring at a glance.
+            </p>
+            <ul id="showcaseList" class="showcase-features-list">
+              <li class="showcase-feature-item">
+                <span class="feature-check">✓</span>
+                <span>Custom Quick Add amounts — tap once to log 330 ml water, 2,500 steps, or 15 mins</span>
+              </li>
+              <li class="showcase-feature-item">
+                <span class="feature-check">✓</span>
+                <span>Time-of-day sections: Morning, Afternoon, Evening, and Anytime</span>
+              </li>
+              <li class="showcase-feature-item">
+                <span class="feature-check">✓</span>
+                <span>Support for Build habits and Quit habits with smart periodic limits</span>
+              </li>
+              <li class="showcase-feature-item">
+                <span class="feature-check">✓</span>
+                <span>200+ curated icons across Health, Fitness, Mind, Routine, and Work</span>
+              </li>
+            </ul>
+          </div>
+
+          <!-- iPhone Visual Column -->
+          <div class="showcase-visual">
+            <div class="iphone-frame showcase-iphone">
+              <div class="iphone-dynamic-island">
+                <div class="island-camera"></div>
+                <div class="island-sensor"></div>
+              </div>
+              <div class="iphone-screen">
+                <img id="showcaseImg" src="assets/screenshots/thumb/01-today.png" alt="Habit Tracker Feature View" width="320" height="695" loading="lazy">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         Interactive Playground (Live Mini App Simulator)
+         ========================================================================== -->
+    <section id="playground" class="section">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">Interactive Simulator</span>
+          <h2 class="section-title">Test drive the logging experience</h2>
+          <p class="section-desc">
+            Experience the smooth, satisfying feel of Quick Add. Tap the buttons below to log routines and watch today's progress ring fill up!
+          </p>
+        </div>
+
+        <div class="playground-card">
+          <!-- Playground Header -->
+          <div class="playground-top">
+            <div class="playground-date-info">
+              <span class="playground-day-title">Today's Habits</span>
+              <span class="playground-day-sub">Tap quick add buttons to log progress</span>
+            </div>
+
+            <div class="playground-progress-wrap">
+              <div class="progress-circle-wrap">
+                <svg viewBox="0 0 60 60">
+                  <circle class="progress-bg" cx="30" cy="30" r="25"></circle>
+                  <circle id="playgroundRingFill" class="progress-bar-fill" cx="30" cy="30" r="25"></circle>
+                </svg>
+                <span id="playgroundPct" class="progress-label">50%</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Interactive Rows -->
+          <div class="interactive-habit-list">
+            <!-- Row 1: Water -->
+            <div class="habit-interactive-row">
+              <div class="habit-left">
+                <div class="habit-icon-sq" style="color:#0ea5e9;">💧</div>
+                <div class="habit-meta">
+                  <span class="habit-row-title">Drink Water</span>
+                  <span class="habit-row-progress">1,500 / 2,000 ml</span>
+                </div>
+              </div>
+              <div class="habit-right-action">
+                <button class="quick-add-btn">+250 ml</button>
+              </div>
+            </div>
+
+            <!-- Row 2: Meditation -->
+            <div class="habit-interactive-row">
+              <div class="habit-left">
+                <div class="habit-icon-sq" style="color:#9333ea;">🧘</div>
+                <div class="habit-meta">
+                  <span class="habit-row-title">Morning Meditation</span>
+                  <span class="habit-row-progress">0 / 15 min</span>
+                </div>
+              </div>
+              <div class="habit-right-action">
+                <button class="quick-add-btn">+15 min</button>
+              </div>
+            </div>
+
+            <!-- Row 3: Reading -->
+            <div class="habit-interactive-row">
+              <div class="habit-left">
+                <div class="habit-icon-sq" style="color:#f59e0b;">📖</div>
+                <div class="habit-meta">
+                  <span class="habit-row-title">Read Non-Fiction</span>
+                  <span class="habit-row-progress">10 / 20 min</span>
+                </div>
+              </div>
+              <div class="habit-right-action">
+                <button class="quick-add-btn">+10 min</button>
+              </div>
+            </div>
+
+            <!-- Row 4: Morning Run -->
+            <div class="habit-interactive-row">
+              <div class="habit-left">
+                <div class="habit-icon-sq" style="color:#10b981;">🏃</div>
+                <div class="habit-meta">
+                  <span class="habit-row-title">Outdoor Jog</span>
+                  <span class="habit-row-progress">0 / 5 km</span>
+                </div>
+              </div>
+              <div class="habit-right-action">
+                <button class="quick-add-btn">+5 km</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Reward Banner -->
+          <div id="playgroundRewardBanner" class="reward-unlocked-banner">
+            🎉 Daily reward unlocked! “Consistency isn’t about perfection. It is about never giving up on showing up.”
+          </div>
+
+          <!-- Footer note -->
+          <div class="playground-footer">
+            <span>✨ Seamlessly integrated with Apple Health & iOS 17/18 Widgets</span>
+            <span style="font-weight: 600;">Tap any row to experiment</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         Philosophy Section: Streak Shields & Vacation Mode
+         ========================================================================== -->
+    <section id="philosophy" class="section">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">Humane Habit Philosophy</span>
+          <h2 class="section-title">Habit tracking without the shame</h2>
+          <p class="section-desc">
+            Most habit trackers punish you with broken streaks the moment life gets in the way.
+            We built Habit Tracker with compassion, giving you tools to handle vacations, illnesses, and off-days with dignity.
+          </p>
+        </div>
+
+        <div class="philosophy-grid">
+          <!-- Card 1: Streak Shields -->
+          <div class="testimonial-card">
+            <div>
+              <div class="card-icon-bubble" style="font-size:1.75rem; width:52px; height:52px; margin-bottom:20px;">🛡️</div>
+              <h3 style="font-size:1.25rem; font-weight:800; margin-bottom:10px;">Streak Shields</h3>
+              <p class="quote-body">
+                Consistency earns protection: you earn 1 Streak Shield for every 7 days of consistency, banking up to 2.
+                If you miss a day due to travel or an emergency, the shield automatically steps in and freezes the day. Your hard-earned streak survives intact.
+              </p>
+            </div>
+            <div class="quote-role" style="font-weight:600; color:var(--accent-primary);">Automatic & Deterministic</div>
+          </div>
+
+          <!-- Card 2: Vacation Mode -->
+          <div class="testimonial-card">
+            <div>
+              <div class="card-icon-bubble" style="font-size:1.75rem; width:52px; height:52px; margin-bottom:20px;">🌴</div>
+              <h3 style="font-size:1.25rem; font-weight:800; margin-bottom:10px;">Vacation Mode</h3>
+              <p class="quote-body">
+                Taking a well-deserved holiday? Enable Vacation Mode with a single toggle. All scheduled habits are excused during your getaway, so you return refreshed without facing a graveyard of broken streaks.
+              </p>
+            </div>
+            <div class="quote-role" style="font-weight:600; color:var(--accent-primary);">Guilt-Free Rest</div>
+          </div>
+
+          <!-- Card 3: Build & Quit Habits -->
+          <div class="testimonial-card">
+            <div>
+              <div class="card-icon-bubble" style="font-size:1.75rem; width:52px; height:52px; margin-bottom:20px;">⚖️</div>
+              <h3 style="font-size:1.25rem; font-weight:800; margin-bottom:10px;">Build & Quit Goals</h3>
+              <p class="quote-body">
+                Not all progress is additive. Set up Build habits (drink water, meditate, stretch) or Quit habits (screen time, caffeine, fast food) with upper limits, periodic quotas (e.g., 3x/week), and flexible schedules.
+              </p>
+            </div>
+            <div class="quote-role" style="font-weight:600; color:var(--accent-primary);">Flexible Scheduling</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         Bento Features Grid (Deep Technical Architecture)
+         ========================================================================== -->
+    <section id="features" class="section">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">Powerful Features</span>
+          <h2 class="section-title">Engineered for depth, speed, and privacy</h2>
+          <p class="section-desc">
+            Everything you need to master your routines, without the clutter or privacy compromises of cloud apps.
+          </p>
+        </div>
+
+        <div class="bento-grid">
+          <!-- Card 1: On-Device InsightEngine -->
+          <div class="bento-card bento-card-wide">
+            <div class="bento-icon">✨</div>
+            <h3 class="bento-title">InsightEngine: 100% On-Device Intelligence</h3>
+            <p class="bento-desc">
+              Your logged history transforms into clear, plain-language behavioral insights.
+              Uncover keystone habits ("Morning walks lead to 30% higher daily completion"), best days of the week, and mood links.
+              Processed entirely on your device with SwiftData — your data never leaves your iPhone.
+            </p>
+            <div style="display:flex; gap:12px; flex-wrap:wrap; margin-top:auto;">
+              <span class="hero-pill-badge">Keystone Habits</span>
+              <span class="hero-pill-badge" style="background:#0ea5e9;">Best Weekdays</span>
+              <span class="hero-pill-badge" style="background:#10b981;">Zero Server Calls</span>
+            </div>
+          </div>
+
+          <!-- Card 2: Focus Timer Live Demo -->
+          <div class="bento-card">
+            <div class="bento-icon">⏱️</div>
+            <h3 class="bento-title">Focus & Pomodoro Timer</h3>
+            <p class="bento-desc">
+              Integrated deep work timer with Dynamic Island and Lock Screen Live Activities.
+              Completing a session automatically logs duration to your linked habit.
+            </p>
+            <div class="focus-demo-box">
+              <div class="focus-duration-selector" aria-label="Select focus duration">
+                <button class="focus-duration-btn" data-mins="15">15m</button>
+                <button class="focus-duration-btn active" data-mins="25">25m</button>
+                <button class="focus-duration-btn" data-mins="45">45m</button>
+              </div>
+              <div id="focusTimerDisplay" class="focus-time-display">25:00</div>
+              <div class="focus-controls">
+                <button id="focusToggleBtn" class="focus-pill-btn primary">Start Focus</button>
+                <button id="focusResetBtn" class="focus-pill-btn">Reset</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 3: 52-Week Year Heatmap -->
+          <div class="bento-card">
+            <div class="bento-icon">🟩</div>
+            <h3 class="bento-title">52-Week Contribution Grid</h3>
+            <p class="bento-desc">
+              Watch your year transform into an inspiring visual heatmap.
+              Hover or tap any square to inspect historic logs and completion intensity.
+            </p>
+            <div id="bentoHeatmap" class="mini-heatmap" aria-label="Contribution heatmap representation"></div>
+          </div>
+
+          <!-- Card 4: Apple Health 2-Way Sync -->
+          <div class="bento-card">
+            <div class="bento-icon">❤️</div>
+            <h3 class="bento-title">Apple Health 2-Way Sync with Undo</h3>
+            <p class="bento-desc">
+              Sync mindful minutes, water volume, steps, workouts, sleep, and HRV.
+              Accidentally log something? Habit Tracker features idempotent writes and full Undo support that removes app-written records cleanly.
+            </p>
+            <img src="assets/previews/preview-sleep.png" alt="Apple Health Sleep & Recovery Preview" class="bento-preview-img" width="400" height="150" loading="lazy">
+          </div>
+
+          <!-- Card 5: Interactive iOS Widgets -->
+          <div class="bento-card">
+            <div class="bento-icon">📲</div>
+            <h3 class="bento-title">Interactive iOS Widgets</h3>
+            <p class="bento-desc">
+              Log habits directly from your Home Screen and Lock Screen without opening the app.
+              Includes circular rings, habit lists, weekly summary matrices, and yearly heatmaps.
+            </p>
+            <img src="assets/previews/preview-weekly.png" alt="Weekly Report Widget Preview" class="bento-preview-img" width="400" height="150" loading="lazy">
+          </div>
+
+          <!-- Card 6: Privacy & Biometric Lock -->
+          <div class="bento-card">
+            <div class="bento-icon">🔒</div>
+            <h3 class="bento-title">Face ID & Biometric App Lock</h3>
+            <p class="bento-desc">
+              Keep your habits, reflections, and mood journal completely confidential.
+              Instant biometric lock with Face ID, Touch ID, or Passcode on app launch and backgrounding.
+            </p>
+            <div style="font-size:0.875rem; color:var(--text-muted); margin-top:auto;">
+              ✓ Encrypted with iOS Data Protection<br>
+              ✓ No ads, analytics, or third-party SDK trackers
+            </div>
+          </div>
+
+          <!-- Card 7: 200+ Icons & Themes -->
+          <div class="bento-card bento-card-wide">
+            <div class="bento-icon">🎨</div>
+            <h3 class="bento-title">200+ Curated Icons & Alternate App Icons</h3>
+            <p class="bento-desc">
+              Personalize every habit with icons across Health, Fitness, Mind, Routine, and Work.
+              Match your Home Screen aesthetic with alternate app icons including Mint, Solar, Ocean, Slate, Indigo, and Plum.
+            </p>
+            <div style="display:flex; gap:16px; align-items:center; flex-wrap:wrap; margin-top:auto;">
+              <img src="assets/icons/app-icon.png" alt="Classic Icon" width="48" height="48" style="border-radius:12px; box-shadow:var(--shadow-sm);">
+              <img src="assets/icons/app-icon-solar.png" alt="Solar Icon" width="48" height="48" style="border-radius:12px; box-shadow:var(--shadow-sm);">
+              <img src="assets/icons/app-icon-ocean.png" alt="Ocean Icon" width="48" height="48" style="border-radius:12px; box-shadow:var(--shadow-sm);">
+              <img src="assets/icons/app-icon-mint.png" alt="Mint Icon" width="48" height="48" style="border-radius:12px; box-shadow:var(--shadow-sm);">
+              <img src="assets/icons/app-icon-plum.png" alt="Plum Icon" width="48" height="48" style="border-radius:12px; box-shadow:var(--shadow-sm);">
+              <img src="assets/icons/app-icon-slate.png" alt="Slate Icon" width="48" height="48" style="border-radius:12px; box-shadow:var(--shadow-sm);">
+              <span style="font-size:0.875rem; font-weight:600; color:var(--text-muted); margin-left:8px;">Choose your look</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         Screenshots Gallery (Filterable Carousel & Lightbox)
+         ========================================================================== -->
+    <section id="gallery" class="section">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">App Gallery</span>
+          <h2 class="section-title">Explore every screen in detail</h2>
+          <p class="section-desc">
+            Click any screenshot to zoom in and see the craftsmanship behind the interface.
+          </p>
+        </div>
+
+        <!-- Filter Buttons -->
+        <div class="gallery-controls">
+          <button class="gallery-btn active" data-filter="all">All Screens</button>
+          <button class="gallery-btn" data-filter="iphone">iPhone (6.9")</button>
+          <button class="gallery-btn" data-filter="framed">App Store Frames</button>
+          <button class="gallery-btn" data-filter="ipad">iPad (13")</button>
+        </div>
+
+        <!-- Scrollable Gallery Strip -->
+        <div class="gallery-scroll-container">
+          <!-- 01 Today -->
+          <div class="gallery-item" data-category="iphone" data-full="assets/screenshots/01-today.png">
+            <div class="gallery-thumb-wrap">
+              <img src="assets/screenshots/thumb/01-today.png" alt="Today Dashboard" width="280" height="608" loading="lazy">
+            </div>
+            <div class="gallery-item-info">
+              <span class="gallery-item-title">Make Today Count</span>
+              <span class="gallery-item-sub">Calm daily dashboard & quick add</span>
+            </div>
+          </div>
+
+          <!-- 02 Insights -->
+          <div class="gallery-item" data-category="iphone" data-full="assets/screenshots/02-insights.png">
+            <div class="gallery-thumb-wrap">
+              <img src="assets/screenshots/thumb/02-insights.png" alt="Private Insights" width="280" height="608" loading="lazy">
+            </div>
+            <div class="gallery-item-info">
+              <span class="gallery-item-title">Patterns Surfaced</span>
+              <span class="gallery-item-sub">On-device keystone habit detection</span>
+            </div>
+          </div>
+
+          <!-- 03 Widgets -->
+          <div class="gallery-item" data-category="iphone" data-full="assets/screenshots/03-widget-progress.png">
+            <div class="gallery-thumb-wrap">
+              <img src="assets/screenshots/thumb/03-widget-progress.png" alt="Home Screen Widgets" width="280" height="608" loading="lazy">
+            </div>
+            <div class="gallery-item-info">
+              <span class="gallery-item-title">Home Screen Widgets</span>
+              <span class="gallery-item-sub">One-tap interactive logging</span>
+            </div>
+          </div>
+
+          <!-- 04 Stats -->
+          <div class="gallery-item" data-category="iphone" data-full="assets/screenshots/04-stats.png">
+            <div class="gallery-thumb-wrap">
+              <img src="assets/screenshots/thumb/04-stats.png" alt="Stats & Momentum" width="280" height="608" loading="lazy">
+            </div>
+            <div class="gallery-item-info">
+              <span class="gallery-item-title">See Your Momentum</span>
+              <span class="gallery-item-sub">Streaks, shields & year heatmaps</span>
+            </div>
+          </div>
+
+          <!-- 05 Focus -->
+          <div class="gallery-item" data-category="iphone" data-full="assets/screenshots/06-focus.png">
+            <div class="gallery-thumb-wrap">
+              <img src="assets/screenshots/thumb/06-focus.png" alt="Focus Timer" width="280" height="608" loading="lazy">
+            </div>
+            <div class="gallery-item-info">
+              <span class="gallery-item-title">Protect Focus Time</span>
+              <span class="gallery-item-sub">Live activities & Pomodoro sessions</span>
+            </div>
+          </div>
+
+          <!-- 06 Mood Report -->
+          <div class="gallery-item" data-category="iphone" data-full="assets/screenshots/08-mood-report.png">
+            <div class="gallery-thumb-wrap">
+              <img src="assets/screenshots/thumb/08-mood-report.png" alt="Mood and Wellness Report" width="280" height="608" loading="lazy">
+            </div>
+            <div class="gallery-item-info">
+              <span class="gallery-item-title">Connect Mood & Habits</span>
+              <span class="gallery-item-sub">Emotional wellness correlation</span>
+            </div>
+          </div>
+
+          <!-- 07 Sleep & Hydration -->
+          <div class="gallery-item" data-category="iphone" data-full="assets/screenshots/09-sleep-hydration-report.png">
+            <div class="gallery-thumb-wrap">
+              <img src="assets/screenshots/thumb/09-sleep-hydration-report.png" alt="Sleep and Hydration Report" width="280" height="608" loading="lazy">
+            </div>
+            <div class="gallery-item-info">
+              <span class="gallery-item-title">Find Better Rhythms</span>
+              <span class="gallery-item-sub">Sleep, water, and recovery charts</span>
+            </div>
+          </div>
+
+          <!-- 08 Framed Today -->
+          <div class="gallery-item" data-category="framed" data-full="assets/frames/01-today.png">
+            <div class="gallery-thumb-wrap">
+              <img src="assets/frames/thumb/01-today.png" alt="Framed Today Slide" width="280" height="608" loading="lazy">
+            </div>
+            <div class="gallery-item-info">
+              <span class="gallery-item-title">Make Today Count</span>
+              <span class="gallery-item-sub">App Store Presentation</span>
+            </div>
+          </div>
+
+          <!-- 09 Framed Insights -->
+          <div class="gallery-item" data-category="framed" data-full="assets/frames/02-insights.png">
+            <div class="gallery-thumb-wrap">
+              <img src="assets/frames/thumb/02-insights.png" alt="Framed Insights Slide" width="280" height="608" loading="lazy">
+            </div>
+            <div class="gallery-item-info">
+              <span class="gallery-item-title">Patterns Surfaced</span>
+              <span class="gallery-item-sub">App Store Presentation</span>
+            </div>
+          </div>
+
+          <!-- 10 iPad Today -->
+          <div class="gallery-item" data-category="ipad" data-full="assets/screenshots/ipad/01-today.png">
+            <div class="gallery-thumb-wrap" style="aspect-ratio: 2048/2732;">
+              <img src="assets/screenshots/ipad/thumb/01-today.png" alt="iPad Today Dashboard" width="280" height="373" loading="lazy">
+            </div>
+            <div class="gallery-item-info">
+              <span class="gallery-item-title">iPad Native Interface</span>
+              <span class="gallery-item-sub">Spacious split views & multi-column</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         Comparison Table Section
+         ========================================================================== -->
+    <section class="section">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">Why We Are Different</span>
+          <h2 class="section-title">Designed for peace of mind</h2>
+          <p class="section-desc">
+            Compare Habit Tracker against conventional habit apps.
+          </p>
+        </div>
+
+        <div class="comparison-table-wrap">
+          <table class="comparison-table" aria-label="Feature Comparison Matrix">
+            <thead>
+              <tr>
+                <th>Feature</th>
+                <th class="col-highlight">Habit Tracker (Us)</th>
+                <th>Generic Habit Apps</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>
+                  <div class="table-feature-title">Data Privacy & Storage</div>
+                  <div class="table-feature-desc">Where your personal logs and moods live</div>
+                </td>
+                <td class="col-highlight">
+                  <span class="check-icon">✓</span> 100% on-device (SwiftData)
+                </td>
+                <td>
+                  <span class="cross-icon">✗</span> Cloud servers & data harvesting
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <div class="table-feature-title">Account Requirements</div>
+                  <div class="table-feature-desc">Email, login, or social authentication</div>
+                </td>
+                <td class="col-highlight">
+                  <span class="check-icon">✓</span> Zero accounts, zero signups
+                </td>
+                <td>
+                  <span class="cross-icon">✗</span> Mandatory account creation
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <div class="table-feature-title">Humane Streak Forgiveness</div>
+                  <div class="table-feature-desc">What happens when you miss a day</div>
+                </td>
+                <td class="col-highlight">
+                  <span class="check-icon">✓</span> Streak Shields & Vacation Mode
+                </td>
+                <td>
+                  <span class="cross-icon">✗</span> Instant streak destruction
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <div class="table-feature-title">Behavioral Insights</div>
+                  <div class="table-feature-desc">Understanding what habits drive your success</div>
+                </td>
+                <td class="col-highlight">
+                  <span class="check-icon">✓</span> Private InsightEngine AI
+                </td>
+                <td>
+                  <span class="cross-icon">✗</span> Basic bar charts or none
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <div class="table-feature-title">Focus & Pomodoro Timer</div>
+                  <div class="table-feature-desc">Live Activities and Dynamic Island support</div>
+                </td>
+                <td class="col-highlight">
+                  <span class="check-icon">✓</span> Built-in with auto-habit logging
+                </td>
+                <td>
+                  <span class="cross-icon">✗</span> Requires separate timer app
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <div class="table-feature-title">Apple Health 2-Way Sync</div>
+                  <div class="table-feature-desc">Water, mindful minutes, workouts, HRV</div>
+                </td>
+                <td class="col-highlight">
+                  <span class="check-icon">✓</span> Idempotent sync with Undo
+                </td>
+                <td>
+                  <span class="cross-icon">✗</span> One-way or duplicates data
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <div class="table-feature-title">Ads & Subscriptions</div>
+                  <div class="table-feature-desc">Interruption and pricing model</div>
+                </td>
+                <td class="col-highlight">
+                  <span class="check-icon">✓</span> 100% Ad-Free, generous free tier
+                </td>
+                <td>
+                  <span class="cross-icon">✗</span> Full-screen popups & paywalls
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         Frequently Asked Questions (Accordion)
+         ========================================================================== -->
+    <section id="faq" class="section">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">Got Questions?</span>
+          <h2 class="section-title">Frequently Asked Questions</h2>
+          <p class="section-desc">
+            Everything you need to know about Habit Tracker: Planner Routine.
+          </p>
+        </div>
+
+        <div class="faq-wrap">
+          <!-- Question 1 -->
+          <div class="faq-item">
+            <button class="faq-question">
+              <span>Is my habit data completely private?</span>
+              <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="6 9 12 15 18 9"></polyline>
+              </svg>
+            </button>
+            <div class="faq-answer">
+              <div class="faq-answer-inner">
+                Yes, completely. Habit Tracker stores all your routines, logs, notes, and mood entries locally on your device using Apple's modern SwiftData framework. We do not have servers, user accounts, or advertising trackers. Your data is your own and backs up securely to your personal private iCloud account.
+              </div>
+            </div>
+          </div>
+
+          <!-- Question 2 -->
+          <div class="faq-item">
+            <button class="faq-question">
+              <span>How do Streak Shields work?</span>
+              <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="6 9 12 15 18 9"></polyline>
+              </svg>
+            </button>
+            <div class="faq-answer">
+              <div class="faq-answer-inner">
+                You earn 1 Streak Shield for every 7 days of completed consistency, banking up to 2 shields. If life happens and you miss a scheduled habit day, a banked shield automatically steps in to freeze that missed day. Your streak survives, and your motivation stays high!
+              </div>
+            </div>
+          </div>
+
+          <!-- Question 3 -->
+          <div class="faq-item">
+            <button class="faq-question">
+              <span>How does Apple Health synchronization work?</span>
+              <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="6 9 12 15 18 9"></polyline>
+              </svg>
+            </button>
+            <div class="faq-answer">
+              <div class="faq-answer-inner">
+                Habit Tracker can read and write mindful minutes, water intake, steps, workouts, sleep, and HRV directly with Apple Health. Unlike other apps that create messy duplicates, our sync is idempotent with custom sample tags: if you adjust or delete a log, the corresponding Apple Health entry is properly corrected or undone.
+              </div>
+            </div>
+          </div>
+
+          <!-- Question 4 -->
+          <div class="faq-item">
+            <button class="faq-question">
+              <span>Can I log habits directly from widgets?</span>
+              <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="6 9 12 15 18 9"></polyline>
+              </svg>
+            </button>
+            <div class="faq-answer">
+              <div class="faq-answer-inner">
+                Yes! With iOS 17 and iOS 18 interactive widgets, you can tap quick-add buttons directly on your Home Screen or Lock Screen without opening the app. Widgets update instantly and automatically refresh their schedule at midnight.
+              </div>
+            </div>
+          </div>
+
+          <!-- Question 5 -->
+          <div class="faq-item">
+            <button class="faq-question">
+              <span>What is included in Habit Tracker Premium?</span>
+              <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="6 9 12 15 18 9"></polyline>
+              </svg>
+            </button>
+            <div class="faq-answer">
+              <div class="faq-answer-inner">
+                The free version is fully functional with up to 5 active habits and essential tracking. Habit Tracker Premium unlocks unlimited active habits, full on-device InsightEngine patterns, Face ID biometric lock, advanced multi-year reports, backup export/import, and alternate app icon customizations.
+              </div>
+            </div>
+          </div>
+
+          <!-- Question 6 -->
+          <div class="faq-item">
+            <button class="faq-question">
+              <span>Can I export and back up my data?</span>
+              <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="6 9 12 15 18 9"></polyline>
+              </svg>
+            </button>
+            <div class="faq-answer">
+              <div class="faq-answer-inner">
+                Yes. You can export a complete, human-readable backup file of all your habits, historical logs, and settings at any time, and restore it seamlessly on another iOS or iPadOS device.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         Call to Action Banner
+         ========================================================================== -->
+    <section class="section">
+      <div class="container">
+        <div class="cta-banner">
+          <h2 class="cta-title">Start your journey to calm, mindful consistency</h2>
+          <p class="cta-desc">
+            Download Habit Tracker: Planner Routine today on the App Store.
+            Experience the difference of an app designed with empathy and respect for your time.
+          </p>
+
+          <div class="cta-buttons">
+            <a href="https://apps.apple.com/app/habit-tracker-planner-routine/id6504261778" target="_blank" rel="noopener noreferrer" class="btn btn-apple btn-lg">
+              <svg viewBox="0 0 24 24">
+                <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M15.97 6.37c.62-.75 1.04-1.8 0.92-2.85-.9.04-1.99.6-2.64 1.35-.58.66-1.08 1.73-.95 2.76 1 .08 2.05-.51 2.67-1.26z"/>
+              </svg>
+              <span>Download on App Store</span>
+            </a>
+
+            <button class="btn btn-secondary btn-lg qr-modal-trigger">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="3" y="3" width="7" height="7"></rect>
+                <rect x="14" y="3" width="7" height="7"></rect>
+                <rect x="14" y="14" width="7" height="7"></rect>
+                <rect x="3" y="14" width="7" height="7"></rect>
+              </svg>
+              <span>Scan QR Code</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ==========================================================================
+       Site Footer
+       ========================================================================== -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <!-- Brand Summary -->
+        <div>
+          <a href="#" class="brand-link">
+            <img src="assets/icons/app-icon.png" alt="Habit Tracker App Icon" class="brand-icon" width="36" height="36">
+            <div class="brand-text">
+              <span class="brand-name">Habit Tracker</span>
+              <span class="brand-descriptor">Planner Routine</span>
+            </div>
+          </a>
+          <p class="footer-brand-desc">
+            A calm, private habit planner built natively for iOS with SwiftData, Live Activities, and compassionate streak protection.
+          </p>
+        </div>
+
+        <!-- Links: Product -->
+        <div>
+          <h4 class="footer-heading">Product</h4>
+          <ul class="footer-links">
+            <li><a href="#showcase">Today Dashboard</a></li>
+            <li><a href="#features">InsightEngine</a></li>
+            <li><a href="#features">Focus Timer</a></li>
+            <li><a href="#features">iOS Widgets</a></li>
+            <li><a href="#philosophy">Streak Shields</a></li>
+          </ul>
+        </div>
+
+        <!-- Links: Support & Legal -->
+        <div>
+          <h4 class="footer-heading">Legal</h4>
+          <ul class="footer-links">
+            <li><a href="privacy.html">Privacy Policy</a></li>
+            <li><a href="terms.html">Terms of Service</a></li>
+            <li><a href="https://docs.google.com/document/d/1xp1rIodLPg0PVwZkXaF_fSH-279oGDIvVhEHVUhEL9w/edit?usp=sharing" target="_blank" rel="noopener noreferrer">Official Privacy Doc</a></li>
+            <li><a href="https://docs.google.com/document/d/1KSCla9R0q3p5ZR2uketMtdjq27QtZN6qTAwnlMJT1S4/edit?usp=sharing" target="_blank" rel="noopener noreferrer">Official Terms Doc</a></li>
+          </ul>
+        </div>
+
+        <!-- Links: International & Tech -->
+        <div>
+          <h4 class="footer-heading">Languages</h4>
+          <div style="font-size:0.8125rem; line-height:1.7; color:var(--text-secondary);">
+            English · Español · Deutsch · Français · Português · Italiano · Nederlands · Polski · 日本語 · 한국어 · 简体中文 · 繁體中文 · हिन्दी
+          </div>
+        </div>
+      </div>
+
+      <!-- Bottom Bar -->
+      <div class="footer-bottom">
+        <div>
+          © 2026 Habit Tracker: Planner Routine. Crafted by Andrei Rusti. All rights reserved.
+        </div>
+        <div style="display:flex; gap:16px;">
+          <span>Requires iOS 17.0 or iPadOS 17.0+</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ==========================================================================
+       Lightbox Zoom Modal
+       ========================================================================== -->
+  <div id="lightboxModal" class="modal-overlay" aria-hidden="true" role="dialog">
+    <div class="modal-lightbox-box">
+      <button id="lightboxClose" class="modal-close-btn" aria-label="Close image zoom">&times;</button>
+      <img id="lightboxImg" src="" alt="Zoomed Screenshot" class="modal-lightbox-img">
+      <div id="lightboxCaption" style="color:#ffffff; margin-top:16px; font-size:0.9375rem; text-align:center;"></div>
+    </div>
+  </div>
+
+  <!-- ==========================================================================
+       QR Code Scan Modal (Scannable SVG)
+       ========================================================================== -->
+  <div id="qrModal" class="modal-overlay" aria-hidden="true" role="dialog">
+    <div class="modal-box">
+      <button id="qrClose" class="modal-close-btn" aria-label="Close modal">&times;</button>
+      <h3 style="font-size:1.375rem; font-weight:800; margin-bottom:8px;">Scan with your iPhone</h3>
+      <p style="font-size:0.875rem; color:var(--text-secondary); margin-bottom:20px;">
+        Point your camera at this QR code to open Habit Tracker directly on the App Store.
+      </p>
+
+      <!-- Real Scannable SVG QR Code -->
+      <div style="padding:16px; border-radius:18px; display:inline-block; margin-bottom:16px;">
+        <img src="assets/qr-code.svg" alt="App Store QR Code" width="180" height="180" style="display:block; margin:0 auto; border-radius:14px;">
+      </div>
+
+      <div style="font-size:0.8125rem; color:var(--text-muted);">
+        Compatible with iPhone, iPad & Apple Silicon Mac (iOS 17+)
+      </div>
+    </div>
+  </div>
+
+  <!-- ==========================================================================
+       Toast Notification Banner
+       ========================================================================== -->
+  <div id="toastNotification" class="toast-notification" role="status" aria-live="polite">
+    <span class="toast-icon">⏱️</span>
+    <div class="toast-text">
+      <span class="toast-title">Focus Complete</span>
+      <span class="toast-msg">Session logged directly to SwiftData.</span>
+    </div>
+  </div>
+
+  <!-- JavaScript -->
+  <script src="app.js"></script>
+</body>
+</html>
