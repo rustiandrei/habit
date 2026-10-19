@@ -29,8 +29,10 @@ Modern, Apple-inspired marketing website and interactive web showcase for **Habi
   - Side-by-side comparison with conventional habit apps (Privacy, Streaks, Ads, Widgets, HealthKit).
 - **Interactive FAQ Accordion**:
   - Smooth expandable answers to frequently asked questions.
+- **Transparent $2.99 One-Time Pricing**:
+  - Clear messaging highlighting the single $2.99 lifetime purchase model with zero recurring subscriptions and zero advertisements.
 - **App Store QR Code Modal**:
-  - Mobile-ready SVG QR code for direct scanning and installation on iOS.
+  - Verified scannable QR code for direct scanning with iPhone Camera to open on the App Store.
 - **Dedicated Legal Pages**:
   - `privacy.html`: Comprehensive privacy policy emphasizing 100% on-device SwiftData architecture and zero tracking.
   - `terms.html`: Complete Terms of Service.

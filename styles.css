@@ -734,8 +734,41 @@ button {
   align-items: center;
   justify-content: center;
   gap: 16px;
-  margin-bottom: 30px;
+  margin-bottom: 24px;
   flex-wrap: wrap;
+}
+
+.hero-pricing-badge {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+  margin-bottom: 28px;
+  flex-wrap: wrap;
+}
+
+.hero-pricing-badge strong {
+  color: var(--text-primary);
+  font-weight: 700;
+}
+
+.price-highlight {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background-color: var(--bg-subtle);
+  border: 1px solid var(--border-medium);
+  padding: 4px 12px;
+  border-radius: var(--radius-full);
+  color: var(--accent-primary);
+  font-weight: 700;
+  box-shadow: var(--shadow-sm);
+}
+
+.dot-divider {
+  color: var(--text-muted);
 }
 
 .hero-proof {
@@ -1826,11 +1859,47 @@ button {
   margin: 0 auto 36px auto;
 }
 
+.cta-price-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 6px 18px;
+  border-radius: var(--radius-full);
+  background-color: var(--bg-glass-card);
+  border: 1px solid var(--border-medium);
+  box-shadow: var(--shadow-sm);
+  margin-bottom: 22px;
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+  backdrop-filter: blur(10px);
+}
+
+.cta-price-tag {
+  background: var(--accent-gradient);
+  color: #ffffff;
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: 999px;
+  letter-spacing: 0.02em;
+}
+
 .cta-buttons {
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 16px;
+  flex-wrap: wrap;
+}
+
+.cta-micro-note {
+  font-size: 0.8125rem;
+  color: var(--text-muted);
+  margin-top: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
   flex-wrap: wrap;
 }
 
