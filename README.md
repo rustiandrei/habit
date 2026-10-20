@@ -50,14 +50,13 @@ website/
 ├── terms.html              # Dedicated Terms of Service
 ├── README.md               # Documentation & hosting guide
 └── assets/
-    ├── icons/              # App icons (Classic, Dark, Tinted, Mint, Solar, Ocean, Plum, Slate)
-    ├── screenshots/        # High-res raw iPhone screenshots (1320x2868)
-    │   ├── thumb/          # Web-optimized 800px previews for instant loading
-    │   ├── ipad/           # iPad 13" screenshots & thumbnails
-    │   └── evidence/       # In-app review screenshots & theme proofs
+    ├── icons/              # 192px app icons (Classic, Solar, Ocean, Mint, Plum, Slate) + favicons
+    ├── screenshots/        # Full-res iPhone screenshots (1320x2868), opened by the gallery lightbox
+    │   ├── thumb/          # 600px-wide JPEG thumbnails used on the page
+    │   └── ipad/           # iPad 13" screenshot & thumbnail
     ├── frames/             # App Store framed marketing slides
-    │   └── thumb/          # Web-optimized framed thumbnails
-    └── previews/           # Report card previews (Weekly, Sleep, Mood)
+    │   └── thumb/          # 600px-wide JPEG thumbnails
+    └── previews/           # Landscape crops for the feature cards (Weekly grid, Sleep chart)
 ```
 
 ---
@@ -84,10 +83,13 @@ Then visit `http://localhost:8080`.
 ## 🌐 Free 1-Click Deployment
 
 ### GitHub Pages
-1. Go to repository **Settings > Pages**.
-2. Select **Source**: Deploy from branch.
-3. Select branch: `main`, folder: `/website` (or copy contents to `docs/`).
-4. Click Save. Your website will be live at `https://<username>.github.io/<repo>/`!
+"Deploy from a branch" only publishes the repository root or `/docs`, not `/website`. Either:
+- **GitHub Actions (keeps the folder name):** in **Settings > Pages**, set **Source** to *GitHub Actions* and add a workflow that runs `actions/upload-pages-artifact` with `path: website` followed by `actions/deploy-pages`.
+- **Or rename the folder to `docs/`:** then in **Settings > Pages** choose *Deploy from a branch*, branch `main`, folder `/docs`.
+
+The site will be live at `https://<username>.github.io/<repo>/`. Note that GitHub Pages on a private repository requires a paid GitHub plan.
+
+`index.html` assumes the site lives at `https://rustiandrei.github.io/habit/` (canonical link, `og:url`, `og:image`, `twitter:image`). If the URL changes, update those tags so link previews keep their image.
 
 ### Cloudflare Pages / Vercel / Netlify
 - Set build command: *(Leave empty)*

@@ -382,6 +382,7 @@ button {
 .brand-text {
   display: flex;
   flex-direction: column;
+  white-space: nowrap;
 }
 
 .brand-name {
@@ -600,6 +601,10 @@ button {
   white-space: nowrap;
 }
 
+.btn svg {
+  flex-shrink: 0;
+}
+
 .btn-primary {
   background: var(--accent-gradient);
   color: #ffffff !important;
@@ -698,6 +703,7 @@ button {
   padding: 2px 8px;
   border-radius: 999px;
   letter-spacing: 0.02em;
+  white-space: nowrap;
 }
 
 .hero-title {
@@ -1355,7 +1361,9 @@ button {
 }
 
 .bento-preview-img {
+  display: block;
   width: 100%;
+  height: auto;
   border-radius: var(--radius-md);
   border: 1px solid var(--border-light);
   box-shadow: var(--shadow-sm);
@@ -1522,6 +1530,7 @@ button {
    -------------------------------------------------------------------------- */
 .gallery-controls {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   justify-content: center;
   gap: 12px;
@@ -1529,6 +1538,7 @@ button {
 }
 
 .gallery-btn {
+  white-space: nowrap;
   padding: 8px 20px;
   border-radius: var(--radius-full);
   background-color: var(--bg-surface);
@@ -2055,7 +2065,7 @@ button {
     grid-row: span 1;
   }
   .showcase-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
     padding: 36px;
   }
   .showcase-visual {
@@ -2098,5 +2108,16 @@ button {
   }
   .comparison-table-wrap {
     overflow-x: auto;
+  }
+  .showcase-grid {
+    padding: 24px 20px;
+    gap: 32px;
+  }
+}
+
+@media (max-width: 480px) {
+  /* Brand + mode toggle + menu fill a phone header; Download stays in the drawer and hero. */
+  .nav-actions .btn {
+    display: none;
   }
 }

@@ -25,16 +25,18 @@
   <meta name="author" content="Andrei Rusti">
 
   <!-- Open Graph / Facebook -->
+  <link rel="canonical" href="https://rustiandrei.github.io/habit/">
   <meta property="og:type" content="website">
+  <meta property="og:url" content="https://rustiandrei.github.io/habit/">
   <meta property="og:title" content="Habit Tracker: Planner Routine — Built for iPhone & iPad">
   <meta property="og:description" content="Build habits that actually stick. Tap-to-log, humane streak shields, and private on-device intelligence. Free to try with a single $2.99 one-time purchase for lifetime Premium (zero subscriptions).">
-  <meta property="og:image" content="assets/frames/01-today.png">
+  <meta property="og:image" content="https://rustiandrei.github.io/habit/assets/frames/01-today.png">
 
   <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Habit Tracker: Planner Routine">
   <meta name="twitter:description" content="A calm, private habit planner for iPhone and iPad. $2.99 one-time payment for lifetime Premium — no recurring subscriptions.">
-  <meta name="twitter:image" content="assets/frames/01-today.png">
+  <meta name="twitter:image" content="https://rustiandrei.github.io/habit/assets/frames/01-today.png">
 
   <!-- Favicons & App Icons -->
   <link rel="icon" type="image/png" sizes="32x32" href="assets/icons/favicon-32.png">
@@ -81,13 +83,13 @@
         <!-- Controls & Actions -->
         <div class="nav-actions">
           <!-- Accent Theme Switcher -->
-          <div class="theme-picker" title="Switch Theme Color" aria-label="Select accent theme">
-            <button class="color-dot active" data-color="indigo" title="Classic Indigo"></button>
-            <button class="color-dot" data-color="solar" title="Solar Coral"></button>
-            <button class="color-dot" data-color="ocean" title="Ocean Teal"></button>
-            <button class="color-dot" data-color="mint" title="Mint Green"></button>
-            <button class="color-dot" data-color="plum" title="Plum Violet"></button>
-            <button class="color-dot" data-color="slate" title="Minimal Slate"></button>
+          <div class="theme-picker" role="group" title="Switch Theme Color" aria-label="Select accent theme">
+            <button class="color-dot active" data-color="indigo" title="Classic Indigo" aria-label="Classic Indigo"></button>
+            <button class="color-dot" data-color="solar" title="Solar Coral" aria-label="Solar Coral"></button>
+            <button class="color-dot" data-color="ocean" title="Ocean Teal" aria-label="Ocean Teal"></button>
+            <button class="color-dot" data-color="mint" title="Mint Green" aria-label="Mint Green"></button>
+            <button class="color-dot" data-color="plum" title="Plum Violet" aria-label="Plum Violet"></button>
+            <button class="color-dot" data-color="slate" title="Minimal Slate" aria-label="Minimal Slate"></button>
           </div>
 
           <!-- Light/Dark Mode Toggle -->
@@ -140,6 +142,7 @@
       <li><a href="#faq">FAQ</a></li>
       <li><a href="privacy.html">Privacy Policy</a></li>
       <li><a href="terms.html">Terms of Service</a></li>
+      <li><a href="mailto:rustiandrei@outlook.com">Contact Support</a></li>
     </ul>
     <div class="mobile-drawer-bottom">
       <a href="https://apps.apple.com/us/app/habit-tracker-planner-routine/id6774956996" target="_blank" rel="noopener noreferrer" class="btn btn-primary" style="width:100%;">
@@ -210,11 +213,6 @@
         <!-- Social Proof Metrics -->
         <div class="hero-proof">
           <div class="proof-item">
-            <span class="stars">★★★★★</span>
-            <strong>4.9 Rating</strong>
-          </div>
-          <span>•</span>
-          <div class="proof-item">
             <span>💎 <strong>$2.99 Lifetime Access</strong></span>
           </div>
           <span>•</span>
@@ -269,7 +267,7 @@
                 <div class="island-sensor"></div>
               </div>
               <div class="iphone-screen">
-                <img src="assets/screenshots/thumb/01-today.png" alt="Habit Tracker iPhone App Today Dashboard" width="320" height="695" loading="eager">
+                <img src="assets/screenshots/thumb/01-today.jpg" alt="Habit Tracker iPhone App Today Dashboard" width="320" height="695" loading="eager">
               </div>
             </div>
 
@@ -293,12 +291,12 @@
 
         <!-- Showcase Navigation Tabs -->
         <div class="showcase-tabs" role="tablist">
-          <button class="tab-btn active" data-tab="today" role="tab">☀️ Today</button>
-          <button class="tab-btn" data-tab="insights" role="tab">✨ Insights</button>
-          <button class="tab-btn" data-tab="widgets" role="tab">📲 Widgets</button>
-          <button class="tab-btn" data-tab="stats" role="tab">📊 Stats & Heatmaps</button>
-          <button class="tab-btn" data-tab="focus" role="tab">⏱️ Focus Timer</button>
-          <button class="tab-btn" data-tab="wellness" role="tab">🌱 Mood & Health</button>
+          <button class="tab-btn active" data-tab="today" role="tab" aria-selected="true">☀️ Today</button>
+          <button class="tab-btn" data-tab="insights" role="tab" aria-selected="false">✨ Insights</button>
+          <button class="tab-btn" data-tab="widgets" role="tab" aria-selected="false">📲 Widgets</button>
+          <button class="tab-btn" data-tab="stats" role="tab" aria-selected="false">📊 Stats & Heatmaps</button>
+          <button class="tab-btn" data-tab="focus" role="tab" aria-selected="false">⏱️ Focus Timer</button>
+          <button class="tab-btn" data-tab="wellness" role="tab" aria-selected="false">🌱 Mood & Health</button>
         </div>
 
         <!-- Showcase Dynamic Display Grid -->
@@ -338,7 +336,7 @@
                 <div class="island-sensor"></div>
               </div>
               <div class="iphone-screen">
-                <img id="showcaseImg" src="assets/screenshots/thumb/01-today.png" alt="Habit Tracker Feature View" width="320" height="695" loading="lazy">
+                <img id="showcaseImg" src="assets/screenshots/thumb/01-today.jpg" alt="Habit Tracker Feature View" width="320" height="695" loading="lazy">
               </div>
             </div>
           </div>
@@ -373,7 +371,7 @@
                   <circle class="progress-bg" cx="30" cy="30" r="25"></circle>
                   <circle id="playgroundRingFill" class="progress-bar-fill" cx="30" cy="30" r="25"></circle>
                 </svg>
-                <span id="playgroundPct" class="progress-label">50%</span>
+                <span id="playgroundPct" class="progress-label">0%</span>
               </div>
             </div>
           </div>
@@ -444,8 +442,8 @@
 
           <!-- Footer note -->
           <div class="playground-footer">
-            <span>✨ Seamlessly integrated with Apple Health & iOS 17/18 Widgets</span>
-            <span style="font-weight: 600;">Tap any row to experiment</span>
+            <span>✨ Works with Apple Health and Home Screen widgets</span>
+            <span style="font-weight: 600;">Tap a button to experiment</span>
           </div>
         </div>
       </div>
@@ -520,10 +518,10 @@
         </div>
 
         <div class="bento-grid">
-          <!-- Card 1: On-Device InsightEngine -->
+          <!-- Card 1: On-Device Habit Patterns -->
           <div class="bento-card bento-card-wide">
             <div class="bento-icon">✨</div>
-            <h3 class="bento-title">InsightEngine: 100% On-Device Intelligence</h3>
+            <h3 class="bento-title">Habit Patterns: 100% On-Device Insights</h3>
             <p class="bento-desc">
               Your logged history transforms into clear, plain-language behavioral insights.
               Uncover keystone habits ("Morning walks lead to 30% higher daily completion"), best days of the week, and mood links.
@@ -577,7 +575,7 @@
               Sync mindful minutes, water volume, steps, workouts, sleep, and HRV.
               Accidentally log something? Habit Tracker features idempotent writes and full Undo support that removes app-written records cleanly.
             </p>
-            <img src="assets/previews/preview-sleep.png" alt="Apple Health Sleep & Recovery Preview" class="bento-preview-img" width="400" height="150" loading="lazy">
+            <img src="assets/previews/preview-sleep.jpg" alt="Sleep vs. hydration chart" class="bento-preview-img" width="720" height="441" loading="lazy">
           </div>
 
           <!-- Card 5: Interactive iOS Widgets -->
@@ -588,7 +586,7 @@
               Log habits directly from your Home Screen and Lock Screen without opening the app.
               Includes circular rings, habit lists, weekly summary matrices, and yearly heatmaps.
             </p>
-            <img src="assets/previews/preview-weekly.png" alt="Weekly Report Widget Preview" class="bento-preview-img" width="400" height="150" loading="lazy">
+            <img src="assets/previews/preview-weekly.jpg" alt="Weekly habit grid" class="bento-preview-img" width="720" height="441" loading="lazy">
           </div>
 
           <!-- Card 6: Privacy & Biometric Lock -->
@@ -653,7 +651,7 @@
           <!-- 01 Today -->
           <div class="gallery-item" data-category="iphone" data-full="assets/screenshots/01-today.png">
             <div class="gallery-thumb-wrap">
-              <img src="assets/screenshots/thumb/01-today.png" alt="Today Dashboard" width="280" height="608" loading="lazy">
+              <img src="assets/screenshots/thumb/01-today.jpg" alt="Today Dashboard" width="280" height="608" loading="lazy">
             </div>
             <div class="gallery-item-info">
               <span class="gallery-item-title">Make Today Count</span>
@@ -664,7 +662,7 @@
           <!-- 02 Insights -->
           <div class="gallery-item" data-category="iphone" data-full="assets/screenshots/02-insights.png">
             <div class="gallery-thumb-wrap">
-              <img src="assets/screenshots/thumb/02-insights.png" alt="Private Insights" width="280" height="608" loading="lazy">
+              <img src="assets/screenshots/thumb/02-insights.jpg" alt="Private Insights" width="280" height="608" loading="lazy">
             </div>
             <div class="gallery-item-info">
               <span class="gallery-item-title">Patterns Surfaced</span>
@@ -675,7 +673,7 @@
           <!-- 03 Widgets -->
           <div class="gallery-item" data-category="iphone" data-full="assets/screenshots/03-widget-progress.png">
             <div class="gallery-thumb-wrap">
-              <img src="assets/screenshots/thumb/03-widget-progress.png" alt="Home Screen Widgets" width="280" height="608" loading="lazy">
+              <img src="assets/screenshots/thumb/03-widget-progress.jpg" alt="Home Screen Widgets" width="280" height="608" loading="lazy">
             </div>
             <div class="gallery-item-info">
               <span class="gallery-item-title">Home Screen Widgets</span>
@@ -686,7 +684,7 @@
           <!-- 04 Stats -->
           <div class="gallery-item" data-category="iphone" data-full="assets/screenshots/04-stats.png">
             <div class="gallery-thumb-wrap">
-              <img src="assets/screenshots/thumb/04-stats.png" alt="Stats & Momentum" width="280" height="608" loading="lazy">
+              <img src="assets/screenshots/thumb/04-stats.jpg" alt="Stats & Momentum" width="280" height="608" loading="lazy">
             </div>
             <div class="gallery-item-info">
               <span class="gallery-item-title">See Your Momentum</span>
@@ -697,7 +695,7 @@
           <!-- 05 Focus -->
           <div class="gallery-item" data-category="iphone" data-full="assets/screenshots/06-focus.png">
             <div class="gallery-thumb-wrap">
-              <img src="assets/screenshots/thumb/06-focus.png" alt="Focus Timer" width="280" height="608" loading="lazy">
+              <img src="assets/screenshots/thumb/06-focus.jpg" alt="Focus Timer" width="280" height="608" loading="lazy">
             </div>
             <div class="gallery-item-info">
               <span class="gallery-item-title">Protect Focus Time</span>
@@ -708,7 +706,7 @@
           <!-- 06 Mood Report -->
           <div class="gallery-item" data-category="iphone" data-full="assets/screenshots/08-mood-report.png">
             <div class="gallery-thumb-wrap">
-              <img src="assets/screenshots/thumb/08-mood-report.png" alt="Mood and Wellness Report" width="280" height="608" loading="lazy">
+              <img src="assets/screenshots/thumb/08-mood-report.jpg" alt="Mood and Wellness Report" width="280" height="608" loading="lazy">
             </div>
             <div class="gallery-item-info">
               <span class="gallery-item-title">Connect Mood & Habits</span>
@@ -719,7 +717,7 @@
           <!-- 07 Sleep & Hydration -->
           <div class="gallery-item" data-category="iphone" data-full="assets/screenshots/09-sleep-hydration-report.png">
             <div class="gallery-thumb-wrap">
-              <img src="assets/screenshots/thumb/09-sleep-hydration-report.png" alt="Sleep and Hydration Report" width="280" height="608" loading="lazy">
+              <img src="assets/screenshots/thumb/09-sleep-hydration-report.jpg" alt="Sleep and Hydration Report" width="280" height="608" loading="lazy">
             </div>
             <div class="gallery-item-info">
               <span class="gallery-item-title">Find Better Rhythms</span>
@@ -730,7 +728,7 @@
           <!-- 08 Framed Today -->
           <div class="gallery-item" data-category="framed" data-full="assets/frames/01-today.png">
             <div class="gallery-thumb-wrap">
-              <img src="assets/frames/thumb/01-today.png" alt="Framed Today Slide" width="280" height="608" loading="lazy">
+              <img src="assets/frames/thumb/01-today.jpg" alt="Framed Today Slide" width="280" height="608" loading="lazy">
             </div>
             <div class="gallery-item-info">
               <span class="gallery-item-title">Make Today Count</span>
@@ -741,7 +739,7 @@
           <!-- 09 Framed Insights -->
           <div class="gallery-item" data-category="framed" data-full="assets/frames/02-insights.png">
             <div class="gallery-thumb-wrap">
-              <img src="assets/frames/thumb/02-insights.png" alt="Framed Insights Slide" width="280" height="608" loading="lazy">
+              <img src="assets/frames/thumb/02-insights.jpg" alt="Framed Insights Slide" width="280" height="608" loading="lazy">
             </div>
             <div class="gallery-item-info">
               <span class="gallery-item-title">Patterns Surfaced</span>
@@ -828,7 +826,7 @@
                   <div class="table-feature-desc">Understanding what habits drive your success</div>
                 </td>
                 <td class="col-highlight">
-                  <span class="check-icon">✓</span> Private InsightEngine AI
+                  <span class="check-icon">✓</span> Private, on-device Habit Patterns
                 </td>
                 <td>
                   <span class="cross-icon">✗</span> Basic bar charts or none
@@ -892,7 +890,7 @@
         <div class="faq-wrap">
           <!-- Question 1 -->
           <div class="faq-item">
-            <button class="faq-question">
+            <button class="faq-question" aria-expanded="false">
               <span>Is my habit data completely private?</span>
               <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <polyline points="6 9 12 15 18 9"></polyline>
@@ -900,14 +898,14 @@
             </button>
             <div class="faq-answer">
               <div class="faq-answer-inner">
-                Yes, completely. Habit Tracker stores all your routines, logs, notes, and mood entries locally on your device using Apple's modern SwiftData framework. We do not have servers, user accounts, or advertising trackers. Your data is your own and backs up securely to your personal private iCloud account.
+                Yes, completely. Habit Tracker stores all your routines, logs, notes, and mood entries locally on your device using Apple's modern SwiftData framework. We do not have servers, user accounts, or advertising trackers. Your data is your own, and it is included in your regular iPhone or iPad backups (iCloud Backup or your computer).
               </div>
             </div>
           </div>
 
           <!-- Question 2 -->
           <div class="faq-item">
-            <button class="faq-question">
+            <button class="faq-question" aria-expanded="false">
               <span>How do Streak Shields work?</span>
               <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <polyline points="6 9 12 15 18 9"></polyline>
@@ -922,7 +920,7 @@
 
           <!-- Question 3 -->
           <div class="faq-item">
-            <button class="faq-question">
+            <button class="faq-question" aria-expanded="false">
               <span>How does Apple Health synchronization work?</span>
               <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <polyline points="6 9 12 15 18 9"></polyline>
@@ -937,7 +935,7 @@
 
           <!-- Question 4 -->
           <div class="faq-item">
-            <button class="faq-question">
+            <button class="faq-question" aria-expanded="false">
               <span>Can I log habits directly from widgets?</span>
               <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <polyline points="6 9 12 15 18 9"></polyline>
@@ -945,14 +943,14 @@
             </button>
             <div class="faq-answer">
               <div class="faq-answer-inner">
-                Yes! With iOS 17 and iOS 18 interactive widgets, you can tap quick-add buttons directly on your Home Screen or Lock Screen without opening the app. Widgets update instantly and automatically refresh their schedule at midnight.
+                Yes! With interactive widgets, you can tap quick-add buttons directly on your Home Screen or Lock Screen without opening the app. Widgets update instantly and automatically refresh their schedule at midnight.
               </div>
             </div>
           </div>
 
           <!-- Question 5 -->
           <div class="faq-item">
-            <button class="faq-question">
+            <button class="faq-question" aria-expanded="false">
               <span>How much does Habit Tracker cost? Are there recurring subscriptions?</span>
               <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <polyline points="6 9 12 15 18 9"></polyline>
@@ -967,7 +965,7 @@
 
           <!-- Question 6 -->
           <div class="faq-item">
-            <button class="faq-question">
+            <button class="faq-question" aria-expanded="false">
               <span>What is included in the $2.99 Habit Tracker Premium upgrade?</span>
               <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <polyline points="6 9 12 15 18 9"></polyline>
@@ -975,14 +973,14 @@
             </button>
             <div class="faq-answer">
               <div class="faq-answer-inner">
-                The one-time $2.99 unlock gives you lifetime access to: unlimited active habits, full on-device InsightEngine behavioral analytics (keystone habits, completion triggers, best weekdays), Face ID and biometric app lock, comprehensive multi-year reports, backup file export/import, and all alternate app icons and accent themes.
+                The one-time $2.99 unlock gives you lifetime access to: unlimited active habits, all on-device Habit Patterns insights (keystone habits, mood links, best weekdays), Face ID and biometric app lock, comprehensive multi-year reports, backup file export/import, and all alternate app icons and accent themes.
               </div>
             </div>
           </div>
 
           <!-- Question 7 -->
           <div class="faq-item">
-            <button class="faq-question">
+            <button class="faq-question" aria-expanded="false">
               <span>Can I export and back up my data?</span>
               <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <polyline points="6 9 12 15 18 9"></polyline>
@@ -1068,7 +1066,7 @@
           <h4 class="footer-heading">Product</h4>
           <ul class="footer-links">
             <li><a href="#showcase">Today Dashboard</a></li>
-            <li><a href="#features">InsightEngine</a></li>
+            <li><a href="#features">Habit Patterns</a></li>
             <li><a href="#features">Focus Timer</a></li>
             <li><a href="#features">iOS Widgets</a></li>
             <li><a href="#philosophy">Streak Shields</a></li>
@@ -1083,13 +1081,14 @@
             <li><a href="terms.html">Terms of Service</a></li>
             <li><a href="https://docs.google.com/document/d/1xp1rIodLPg0PVwZkXaF_fSH-279oGDIvVhEHVUhEL9w/edit?usp=sharing" target="_blank" rel="noopener noreferrer">Official Privacy Doc</a></li>
             <li><a href="https://docs.google.com/document/d/1KSCla9R0q3p5ZR2uketMtdjq27QtZN6qTAwnlMJT1S4/edit?usp=sharing" target="_blank" rel="noopener noreferrer">Official Terms Doc</a></li>
+            <li><a href="mailto:rustiandrei@outlook.com">Contact Support</a></li>
           </ul>
         </div>
 
         <!-- Links: International & Tech -->
         <div>
           <h4 class="footer-heading">Languages</h4>
-          <div style="font-size:0.8125rem; line-height:1.7; color:var(--text-secondary);">
+          <div style="font-size:0.8125rem; line-height:1.7; color:var(--text-secondary); word-break:keep-all;">
             English · Español · Deutsch · Français · Português · Italiano · Nederlands · Polski · 日本語 · 한국어 · 简体中文 · 繁體中文 · हिन्दी
           </div>
         </div>
@@ -1101,7 +1100,7 @@
           © 2026 Habit Tracker: Planner Routine. Crafted by Andrei Rusti. All rights reserved.
         </div>
         <div style="display:flex; gap:16px;">
-          <span>Requires iOS 17.0 or iPadOS 17.0+</span>
+          <span>Requires iOS 18.0 or iPadOS 18.0 or later</span>
         </div>
       </div>
     </div>
@@ -1144,7 +1143,7 @@
 
       <div style="font-size:0.8125rem; color:var(--text-muted); line-height:1.6;">
         Free to download · $2.99 one-time payment for lifetime Premium<br>
-        Compatible with iPhone, iPad & Apple Silicon Mac (iOS 17+)
+        For iPhone and iPad (iOS 18 or later)
       </div>
     </div>
   </div>

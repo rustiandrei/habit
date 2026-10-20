@@ -58,10 +58,15 @@ function initThemeAndColor() {
   const savedColor = localStorage.getItem('ht_color') || 'indigo';
   html.setAttribute('data-theme-color', savedColor);
   colorDots.forEach(dot => {
-    if (dot.dataset.color === savedColor) dot.classList.add('active');
+    dot.classList.toggle('active', dot.dataset.color === savedColor);
+    dot.setAttribute('aria-pressed', String(dot.dataset.color === savedColor));
     dot.addEventListener('click', () => {
-      colorDots.forEach(d => d.classList.remove('active'));
+      colorDots.forEach(d => {
+        d.classList.remove('active');
+        d.setAttribute('aria-pressed', 'false');
+      });
       dot.classList.add('active');
+      dot.setAttribute('aria-pressed', 'true');
       const color = dot.dataset.color;
       html.setAttribute('data-theme-color', color);
       localStorage.setItem('ht_color', color);
@@ -84,11 +89,11 @@ const SHOWCASE_DATA = {
       "200+ curated icons across Health, Fitness, Mind, Routine, and Work"
     ],
     img: "assets/screenshots/01-today.png",
-    thumb: "assets/screenshots/thumb/01-today.png",
+    thumb: "assets/screenshots/thumb/01-today.jpg",
     alt: "Habit Tracker Today view showing habits, quick add and progress"
   },
   insights: {
-    tag: "InsightEngine",
+    tag: "Habit Patterns",
     title: "Private, on-device patterns revealed for you",
     desc: "Your logged history turns into actionable, plain-language insights. Everything runs 100% locally on your iPhone using SwiftData — zero servers, zero accounts, and zero cloud tracking.",
     features: [
@@ -98,21 +103,21 @@ const SHOWCASE_DATA = {
       "Encouraging, non-judgmental tone that celebrates wins without guilt"
     ],
     img: "assets/screenshots/02-insights.png",
-    thumb: "assets/screenshots/thumb/02-insights.png",
+    thumb: "assets/screenshots/thumb/02-insights.jpg",
     alt: "Habit Tracker private on-device insights view"
   },
   widgets: {
     tag: "iOS Widgets",
     title: "Habits live directly on your Home Screen",
-    desc: "Check your progress and log habits in a fraction of a second with iOS 17 & 18 interactive widgets. Zero app launches required.",
+    desc: "Check your progress and log habits in a fraction of a second with interactive widgets. Zero app launches required.",
     features: [
       "Interactive tap-to-log buttons right on the Home Screen",
       "Small circular progress rings, medium habit lists, and large summary calendars",
-      "Lock Screen circular and rectangular glanceable widgets",
+      "Circular Lock Screen widget: glance at progress or log with a tap",
       "Smart midnight rollover: automatically rebuilds the schedule with zero stale data"
     ],
     img: "assets/screenshots/03-widget-progress.png",
-    thumb: "assets/screenshots/thumb/03-widget-progress.png",
+    thumb: "assets/screenshots/thumb/03-widget-progress.jpg",
     alt: "Habit Tracker interactive widgets on iPhone home screen"
   },
   stats: {
@@ -126,7 +131,7 @@ const SHOWCASE_DATA = {
       "Export, share, and re-import your habit data anytime in open formats"
     ],
     img: "assets/screenshots/04-stats.png",
-    thumb: "assets/screenshots/thumb/04-stats.png",
+    thumb: "assets/screenshots/thumb/04-stats.jpg",
     alt: "Habit Tracker stats, streaks and heatmap analytics"
   },
   focus: {
@@ -136,11 +141,11 @@ const SHOWCASE_DATA = {
     features: [
       "Live Activities & Dynamic Island integration for Lock Screen countdowns",
       "Automatically saves completed minutes straight into your habit records",
-      "Optionally writes mindful minutes directly to Apple Health",
-      "Preset 15, 25, 45, and 60-minute sessions or set any custom timer"
+      "If the linked habit syncs with Apple Health, the minutes are saved there too",
+      "Pick any session length from 5 to 120 minutes"
     ],
     img: "assets/screenshots/06-focus.png",
-    thumb: "assets/screenshots/thumb/06-focus.png",
+    thumb: "assets/screenshots/thumb/06-focus.jpg",
     alt: "Habit Tracker focus timer with live activity support"
   },
   wellness: {
@@ -154,7 +159,7 @@ const SHOWCASE_DATA = {
       "Weekly, monthly, and yearly habit matrices to inspect routine patterns"
     ],
     img: "assets/screenshots/08-mood-report.png",
-    thumb: "assets/screenshots/thumb/08-mood-report.png",
+    thumb: "assets/screenshots/thumb/08-mood-report.jpg",
     alt: "Habit Tracker mood and wellness tracking report"
   }
 };
@@ -171,8 +176,12 @@ function initAppShowcase() {
 
   tabs.forEach(tab => {
     tab.addEventListener('click', () => {
-      tabs.forEach(t => t.classList.remove('active'));
+      tabs.forEach(t => {
+        t.classList.remove('active');
+        t.setAttribute('aria-selected', 'false');
+      });
       tab.classList.add('active');
+      tab.setAttribute('aria-selected', 'true');
 
       const key = tab.dataset.tab;
       const data = SHOWCASE_DATA[key];
@@ -234,7 +243,7 @@ function initInteractivePlayground() {
         habit.complete = true;
         completedCount++;
         row.classList.add('completed');
-        if (progressLabel) progressLabel.textContent = `Completed (${habit.target} ${habit.unit})`;
+        if (progressLabel) progressLabel.textContent = `Completed (${habit.target.toLocaleString('en-US')} ${habit.unit})`;
         if (actionBtn) {
           actionBtn.innerHTML = `✓ Done`;
           actionBtn.style.background = 'var(--accent-primary)';
@@ -243,7 +252,7 @@ function initInteractivePlayground() {
       } else {
         habit.complete = false;
         row.classList.remove('completed');
-        if (progressLabel) progressLabel.textContent = `${habit.current} / ${habit.target} ${habit.unit}`;
+        if (progressLabel) progressLabel.textContent = `${habit.current.toLocaleString('en-US')} / ${habit.target.toLocaleString('en-US')} ${habit.unit}`;
         if (actionBtn) {
           actionBtn.innerHTML = `+${habit.step} ${habit.unit}`;
           actionBtn.style.background = '';
@@ -490,27 +499,67 @@ function initGalleryFilterAndLightbox() {
   });
 
   // Lightbox Zoom
-  galleryItems.forEach(item => {
-    item.addEventListener('click', () => {
-      const fullSrc = item.dataset.full;
-      const title = item.querySelector('.gallery-item-title')?.textContent || '';
-      const sub = item.querySelector('.gallery-item-sub')?.textContent || '';
+  let lastFocused = null;
 
-      if (lightboxImg) lightboxImg.src = fullSrc;
-      if (lightboxCaption) lightboxCaption.innerHTML = `<strong>${title}</strong> — ${sub}`;
-      if (lightboxModal) lightboxModal.classList.add('active');
+  function openLightbox(item) {
+    const fullSrc = item.dataset.full;
+    const title = item.querySelector('.gallery-item-title')?.textContent || '';
+    const sub = item.querySelector('.gallery-item-sub')?.textContent || '';
+
+    if (lightboxImg) {
+      lightboxImg.src = fullSrc;
+      lightboxImg.alt = item.querySelector('img')?.alt || title;
+    }
+    if (lightboxCaption) lightboxCaption.innerHTML = `<strong>${title}</strong> — ${sub}`;
+    if (lightboxModal) {
+      lastFocused = item;
+      openModal(lightboxModal, lightboxClose);
+    }
+  }
+
+  galleryItems.forEach(item => {
+    // Gallery cards are divs, so give them button semantics for keyboard users.
+    item.setAttribute('tabindex', '0');
+    item.setAttribute('role', 'button');
+    item.setAttribute('aria-label', `Zoom: ${item.querySelector('.gallery-item-title')?.textContent || 'screenshot'}`);
+    item.addEventListener('click', () => openLightbox(item));
+    item.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        openLightbox(item);
+      }
     });
   });
 
   if (lightboxClose && lightboxModal) {
     lightboxClose.addEventListener('click', () => {
-      lightboxModal.classList.remove('active');
+      closeModal(lightboxModal, lastFocused);
     });
     lightboxModal.addEventListener('click', (e) => {
-      if (e.target === lightboxModal) lightboxModal.classList.remove('active');
+      if (e.target === lightboxModal) closeModal(lightboxModal, lastFocused);
     });
   }
 }
+
+/* ==========================================================================
+   Modal helpers (shared by lightbox & QR modal)
+   ========================================================================== */
+function openModal(modal, focusTarget) {
+  modal.classList.add('active');
+  modal.setAttribute('aria-hidden', 'false');
+  focusTarget?.focus();
+}
+
+function closeModal(modal, returnFocusTo) {
+  modal.classList.remove('active');
+  modal.setAttribute('aria-hidden', 'true');
+  returnFocusTo?.focus();
+}
+
+document.addEventListener('keydown', (e) => {
+  if (e.key !== 'Escape') return;
+  document.querySelectorAll('.modal-overlay.active').forEach(modal => closeModal(modal));
+});
 
 /* ==========================================================================
    7. FAQ Accordion
@@ -529,6 +578,7 @@ function initFAQAccordion() {
       faqItems.forEach(other => {
         if (other !== item) {
           other.classList.remove('open');
+          other.querySelector('.faq-question')?.setAttribute('aria-expanded', 'false');
           const otherAns = other.querySelector('.faq-answer');
           if (otherAns) otherAns.style.maxHeight = null;
         }
@@ -542,6 +592,7 @@ function initFAQAccordion() {
         item.classList.add('open');
         answer.style.maxHeight = answer.scrollHeight + 'px';
       }
+      questionBtn.setAttribute('aria-expanded', String(!isOpen));
     });
   });
 }
@@ -555,22 +606,24 @@ function initQRCodeModal() {
   const qrClose = document.getElementById('qrClose');
 
   if (!qrModal) return;
+  let lastTrigger = null;
 
   qrTriggers.forEach(btn => {
     btn.addEventListener('click', (e) => {
       e.preventDefault();
-      qrModal.classList.add('active');
+      lastTrigger = btn;
+      openModal(qrModal, qrClose);
     });
   });
 
   if (qrClose) {
     qrClose.addEventListener('click', () => {
-      qrModal.classList.remove('active');
+      closeModal(qrModal, lastTrigger);
     });
   }
 
   qrModal.addEventListener('click', (e) => {
-    if (e.target === qrModal) qrModal.classList.remove('active');
+    if (e.target === qrModal) closeModal(qrModal, lastTrigger);
   });
 }
 
